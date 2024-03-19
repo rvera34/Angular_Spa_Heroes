@@ -49,6 +49,25 @@ img {
   }
 }
 
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1em;
+}
+
+.no-results {
+  margin-top: 20px; /* Asegura un poco de espacio sobre el mensaje */
+  text-align: center; /* Centra el texto del mensaje */
+  color: #666; /* Color del texto, elige uno que se ajuste a tu diseño */
+  font-size: 18px; /* Tamaño del texto */
+  padding: 10px; /* Espaciado interno para que el mensaje no esté pegado a los bordes */
+  background-color: #f2f2f2; /* Fondo sutil para que resalte */
+  border-radius: 5px; /* Bordes redondeados para suavizar el aspecto */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Sombra ligera para dar profundidad */
+}
+
+
 
 /* Responsive Design */
 @media (max-width: 600px) {

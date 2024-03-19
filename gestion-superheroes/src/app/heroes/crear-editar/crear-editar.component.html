@@ -2,7 +2,7 @@
   <form [formGroup]="heroeForm" (ngSubmit)="onSubmit()">
     <mat-form-field appearance="fill">
       <mat-label>Nombre</mat-label>
-      <input matInput formControlName="nombre" required>
+      <input matInput formControlName="nombre" style="text-transform: uppercase" required>
     </mat-form-field>
 
     <mat-form-field appearance="fill">

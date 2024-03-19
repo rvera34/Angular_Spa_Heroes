@@ -15,6 +15,7 @@ import {CustomMatPaginatorIntl} from "./custom_classes/customMatPaginator";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     MatToolbarModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatProgressSpinnerModule,
     MatSnackBarModule
   ],
   providers: [

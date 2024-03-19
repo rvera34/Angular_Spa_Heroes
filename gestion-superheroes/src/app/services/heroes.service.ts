@@ -30,21 +30,25 @@ export class HeroesService {
 
   // Crear - Añadir un nuevo héroe
   addHero(hero: Heroe): Observable<Heroe[]> {
-    this.heroes.push(hero);
+    const newId = this.heroes.length > 0 ? Math.max(...this.heroes.map(h => h.id)) + 1 : 1;
+    const newHero = { ...hero, id: newId };
+    this.heroes.push(newHero);
     return of(this.heroes);
   }
 
-  // Actualizar - Actualizar un héroe existente por su ID
+
+// Actualizar - Actualizar un héroe existente por su ID
   updateHero(heroId: number, hero: Heroe): Observable<Heroe[]> {
     const index = this.heroes.findIndex(h => h.id === heroId);
     if (index !== -1) {
-      this.heroes[index] = hero;
+      this.heroes[index] = { ...hero, id: heroId }; // Forzar el id al héroe actualizado
     } else {
-      // Maneja el caso donde el héroe no existe lanzando un error
       return throwError(() => new Error('Hero not found'));
     }
     return of(this.heroes);
   }
+
+
 
 
   // Eliminar - Eliminar un héroe por su índice
@@ -79,7 +83,7 @@ const HEROES_MOCK: Heroe[] = [
   },
   {
     id: 2,
-    nombre: 'Clark',
+    nombre: 'clark',
     apellido: 'Kent',
     telefono: ' 955708090',
     edad: 35,
@@ -89,7 +93,7 @@ const HEROES_MOCK: Heroe[] = [
   },
   {
     id: 3,
-    nombre: 'Tony',
+    nombre: 'tony',
     apellido: 'Stark',
     telefono: '633880022',
     edad: 40,

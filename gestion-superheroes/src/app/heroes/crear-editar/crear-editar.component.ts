@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {HeroesService} from "../../services/heroes.service";
+import {NotificationService} from "../../services/notification.service";
 
 @Component({
   selector: 'app-crear-editar',
@@ -16,6 +17,7 @@ export class CrearEditarComponent {
 
   constructor(
     private heroesService: HeroesService,
+    private notificationService: NotificationService,
     private route: ActivatedRoute,
     private router: Router
   ) {
@@ -41,7 +43,7 @@ export class CrearEditarComponent {
             telefono: heroe.telefono,
             edad: heroe.edad,
             descripcion: heroe.descripcion,
-            fechaDeNacimiento: heroe.fechaDeNacimiento.toISOString().substring(0, 10), // Ajustar formato de fecha
+            fechaDeNacimiento: heroe.fechaDeNacimiento,
             imagenUrl: heroe.imagenUrl
           });
         });
@@ -52,16 +54,31 @@ export class CrearEditarComponent {
   onSubmit(): void {
     if (this.id != null) {
       // Editar héroe existente
-      this.heroesService.updateHero(this.id, this.heroeForm.value).subscribe(() => {
-        this.router.navigate(['/listado']);
+      this.heroesService.updateHero(this.id, this.heroeForm.value).subscribe({
+        next: () => {
+          this.router.navigate(['/listado']).then(() => {
+            this.notificationService.show('Héroe actualizado con éxito');
+          });
+        },
+        error: () => {
+          this.notificationService.show('Error al actualizar el héroe', 'OK', 5000);
+        }
       });
     } else {
       // Crear nuevo héroe
-      this.heroesService.addHero(this.heroeForm.value).subscribe(() => {
-        this.router.navigate(['/listado']);
+      this.heroesService.addHero(this.heroeForm.value).subscribe({
+        next: () => {
+          this.router.navigate(['/listado']).then(() => {
+            this.notificationService.show('Héroe añadido con éxito');
+          });
+        },
+        error: () => {
+          this.notificationService.show('Error al añadir el héroe', 'OK', 5000);
+        }
       });
     }
   }
+
 
   onClose(): void {
     this.router.navigate(['/listado'], { relativeTo: this.route });

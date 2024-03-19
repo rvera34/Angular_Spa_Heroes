@@ -18,6 +18,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatTooltipModule} from "@angular/material/tooltip";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 
 @NgModule({
@@ -26,22 +27,23 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     CrearEditarComponent,
     ConfirmDialogComponent
   ],
-    imports: [
-        CommonModule,
-        HeroesRoutingModule,
-        MatGridListModule,
-        MatCardModule,
-        MatToolbarModule,
-        MatTableModule,
-        MatPaginatorModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatIconModule,
-        MatButtonModule,
-        ReactiveFormsModule,
-        MatDatepickerModule,
-        MatDialogModule,
-        MatTooltipModule
-    ]
+  imports: [
+    CommonModule,
+    HeroesRoutingModule,
+    MatGridListModule,
+    MatCardModule,
+    MatToolbarModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatTooltipModule,
+    MatProgressSpinnerModule
+  ]
 })
 export class HeroesModule { }
