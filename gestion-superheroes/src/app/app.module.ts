@@ -5,6 +5,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import {MatPaginatorIntl} from "@angular/material/paginator";
+import {MatButtonModule} from "@angular/material/button";
+import {MatToolbarModule} from "@angular/material/toolbar";
+
+import {CustomMatPaginatorIntl} from "./custom_classes/customMatPaginator";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
+
+
 @NgModule({
   declarations: [
     AppComponent
@@ -12,9 +24,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatGridListModule,
+    MatCardModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSnackBarModule
   ],
-  providers: [],
+  providers: [
+    { provide: MatPaginatorIntl, useClass: CustomMatPaginatorIntl }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

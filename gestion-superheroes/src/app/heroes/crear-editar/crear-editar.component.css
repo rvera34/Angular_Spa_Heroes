@@ -1,0 +1,60 @@
+.mat-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  flex-wrap: wrap; /* Permite que los elementos se envuelvan si no caben en una sola línea */
+}
+
+form {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-wrap: wrap; /* Asegúrate de que los form fields puedan envolverse */
+  gap: 20px; /* Esto crea un espacio entre los form fields */
+  justify-content: space-between; /* Esto distribuye los elementos uniformemente */
+}
+
+mat-form-field {
+  flex: 1 0 45%; /* Esto permite que los mat-form-field crezcan, pero no más allá del 45% */
+  margin-bottom: 20px; /* Espacio en la parte inferior */
+  /* No se necesita un margen lateral específico debido al uso de gap en el formulario */
+}
+
+mat-label {
+  color: #333;
+}
+
+input::placeholder, textarea::placeholder {
+  font-style: italic;
+}
+
+button[mat-raised-button] {
+  width: auto; /* Esto permite que el botón tenga el ancho de su contenido */
+  margin-top: 20px; /* Ajuste para mantener la consistencia con el espacio entre campos */
+  padding: 10px 30px; /* Espaciado interno para el botón */
+}
+
+/* Personalización del botón cuando está desactivado */
+button[mat-raised-button][disabled] {
+  background-color: #ccc !important;
+  color: #666 !important;
+}
+
+/* Estilos para hacer que el formulario sea responsivo */
+@media (max-width: 600px) {
+  mat-form-field {
+    flex-basis: 100%; /* Hace que cada campo ocupe el 100% del espacio disponible */
+    margin-bottom: 15px; /* Ajusta el margen inferior para pantallas pequeñas */
+  }
+  .mat-container {
+    padding: 5px;
+  }
+  form {
+    padding: 15px;
+    gap: 15px; /* Ajusta el espacio entre campos para pantallas pequeñas */
+  }
+}

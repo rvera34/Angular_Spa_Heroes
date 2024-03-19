@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Heroe} from "../models/heroe.model";
-import {Observable, of} from "rxjs";
+import {Observable, of, throwError} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +18,14 @@ export class HeroesService {
 
 
   // Leer - Obtener un héroe por su índice
-  getHeroByIndex(index: number): Observable<Heroe> {
-    return of(this.heroes[index]);
+  getHeroById(id: number): Observable<Heroe> {
+    const hero = this.heroes.find(heroe => heroe.id === id);
+    if (hero) {
+      return of(hero);
+    } else {
+      // Maneja el caso donde el héroe no existe lanzando un error
+      return throwError(() => new Error('Hero not found'));
+    }
   }
 
   // Crear - Añadir un nuevo héroe
@@ -28,18 +34,30 @@ export class HeroesService {
     return of(this.heroes);
   }
 
-  // Actualizar - Actualizar un héroe existente por su índice
-  updateHero(index: number, hero: Heroe): Observable<Heroe[]> {
-    if (index >= 0 && index < this.heroes.length) {
+  // Actualizar - Actualizar un héroe existente por su ID
+  updateHero(heroId: number, hero: Heroe): Observable<Heroe[]> {
+    const index = this.heroes.findIndex(h => h.id === heroId);
+    if (index !== -1) {
       this.heroes[index] = hero;
+    } else {
+      // Maneja el caso donde el héroe no existe lanzando un error
+      return throwError(() => new Error('Hero not found'));
     }
     return of(this.heroes);
   }
 
+
   // Eliminar - Eliminar un héroe por su índice
-  deleteHero(index: number): Observable<Heroe[]> {
-    this.heroes = this.heroes.filter((_, i) => i !== index);
+  deleteHero(id: number): Observable<Heroe[]> {
+    this.heroes = this.heroes.filter(heroe => heroe.id !== id);
     return of(this.heroes);
+  }
+
+
+  // Nuevo - Filtrar héroes por nombre
+  filterHeroes(query: string): Observable<Heroe[]> {
+    query = query.toLowerCase();
+    return of(this.heroes.filter(hero => hero.nombre.toLowerCase().includes(query)));
   }
 
 }
@@ -50,39 +68,44 @@ export class HeroesService {
 
 const HEROES_MOCK: Heroe[] = [
   {
+    id: 1,
     nombre: 'Bruce',
     apellido: 'Wayne',
-    telefono: '123456789',
+    telefono: '912345678',
     edad: 30,
     descripcion: 'Empresario de día, protector de Gotham de noche.',
     fechaDeNacimiento: new Date(1990, 5, 15),
     imagenUrl: 'assets/heroes/batman.png'
   },
   {
+    id: 2,
     nombre: 'Clark',
     apellido: 'Kent',
-    telefono: '999999999',
+    telefono: ' 955708090',
     edad: 35,
     descripcion: 'Periodista de día, protector de Metrópolis de noche.',
     fechaDeNacimiento: new Date(1985, 6, 18),
-    imagenUrl: 'assets/imagenes/superman.png'
+    imagenUrl: 'assets/heroes/superman.png'
   },
   {
+    id: 3,
     nombre: 'Tony',
     apellido: 'Stark',
-    telefono: '888888888',
+    telefono: '633880022',
     edad: 40,
     descripcion: 'Genio, multimillonario, playboy, filántropo.',
     fechaDeNacimiento: new Date(1980, 4, 29),
-    imagenUrl: 'assets/imagenes/iron-man.png'
-  },{
+    imagenUrl: 'assets/heroes/iron-man.png'
+  },
+  {
+    id: 4,
     nombre: 'Logan',
     apellido: '',
-    telefono: '777777777',
+    telefono: ' 600123456',
     edad: 100,
     descripcion: 'Mutante con poderes de regeneración, esqueleto de adamantium y garras retráctiles.',
     fechaDeNacimiento: new Date(1880, 0, 1),
-    imagenUrl: 'assets/imagenes/wolverine.jpg'
+    imagenUrl: 'assets/heroes/wolverine.jpg'
   }
 
 ];

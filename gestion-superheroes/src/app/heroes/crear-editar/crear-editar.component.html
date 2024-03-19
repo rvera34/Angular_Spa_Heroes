@@ -1,1 +1,56 @@
-<p>crear-editar works!</p>
+<div class="mat-container">
+  <form [formGroup]="heroeForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="nombre" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Apellido</mat-label>
+      <input matInput formControlName="apellido">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Teléfono</mat-label>
+      <input matInput formControlName="telefono">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Edad</mat-label>
+      <input matInput type="number" formControlName="edad">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Descripción</mat-label>
+      <textarea matInput formControlName="descripcion"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Fecha de Nacimiento</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="fechaDeNacimiento">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>URL de la Imagen</mat-label>
+      <input matInput formControlName="imagenUrl">
+    </mat-form-field>
+
+    <button mat-raised-button
+            color="primary"
+            aria-label="Editar héroe"
+            type="submit"
+            [disabled]="heroeForm.invalid"
+    >
+      <mat-icon>edit</mat-icon>Guardar
+    </button>
+
+    <button mat-raised-button color="warn" aria-label="Borrar héroe" type="button" (click)="onClose()">
+      <mat-icon>close</mat-icon>Cerrar
+    </button>
+
+
+
+  </form>
+</div>

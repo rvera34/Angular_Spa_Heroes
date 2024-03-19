@@ -1,0 +1,18 @@
+.confirm-dialog-content {
+  min-width: 300px; /* Asegura un ancho mínimo para el diálogo */
+  font-size: 16px; /* Tamaño de letra legible */
+  margin-top: 20px; /* Espacio arriba del contenido */
+  color: rgba(0, 0, 0, 0.87); /* Color de texto para alta legibilidad */
+}
+
+.cancel-button mat-icon, .delete-button mat-icon {
+  margin-right: 8px; /* Espacio entre el icono y el texto */
+}
+
+mat-dialog-actions {
+  margin-top: 24px; /* Espacio antes de las acciones */
+}
+
+.delete-button {
+  margin-left: 12px; /* Espacio entre botones */
+}

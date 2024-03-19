@@ -1,0 +1,101 @@
+.main-container {
+  margin: 20px; /* Añade un margen de 20px a todos los lados */
+}
+
+/* Estilos Generales */
+.mat-elevation-z8 {
+  box-shadow: 0 5px 5px -3px rgba(0,0,0,0.2), 0 8px 10px 1px rgba(0,0,0,0.14), 0 3px 14px 2px rgba(0,0,0,0.12);
+
+}
+
+.toolbar-actions {
+  display: flex;
+  justify-content: space-between; /* Separa los elementos al principio y al final del contenedor */
+  align-items: center; /* Alinea los elementos verticalmente en el centro */
+}
+
+mat-form-field {
+  margin-right: 8px; /* Añade un margen a la derecha del campo de búsqueda si es necesario */
+}
+
+
+/* Estilos para la tabla */
+table {
+  width: 100%;
+}
+
+/* Encabezados de la tabla */
+.mat-header-cell {
+  color: #1976d2; /* Color azul primario para los encabezados */
+  font-weight: bold;
+}
+
+/* Celdas de la tabla */
+.mat-cell, .mat-header-cell {
+  padding: 16px;
+  border-bottom: 1px solid #e0e0e0; /* Línea divisoria sutil entre filas */
+}
+
+/* Estilos para imágenes */
+img {
+  border-radius: 50%; /* Hace las imágenes redondas */
+  object-fit: cover; /* Asegura que las imágenes no se deformen */
+}
+
+@media (max-width: 800px) {
+  /* Ocultar la cabecera y las celdas de las columnas específicas */
+  .mat-column-apellido, .mat-column-edad, .mat-column-descripcion, .mat-column-telefono, .mat-column-fechaDeNacimiento {
+    display: none;
+  }
+}
+
+
+/* Responsive Design */
+@media (max-width: 600px) {
+
+  .toolbar-actions {
+    flex-direction: column; /* Apila los elementos verticalmente */
+    align-items: flex-start; /* Alinea los elementos al principio del contenedor */
+  }
+
+  mat-form-field, button {
+    width: 100%; /* Hace que el campo de búsqueda y el botón ocupen todo el ancho disponible */
+    margin-bottom: 8px; /* Añade un margen abajo para separar los elementos */
+  }
+
+  button {
+    order: 1; /* Coloca el botón antes del campo de búsqueda */
+  }
+
+  mat-form-field {
+    order: 2; /* Coloca el campo de búsqueda después del botón */
+  }
+  .mat-cell, .mat-header-cell {
+    padding: 8px; /* Menos padding en pantallas pequeñas */
+  }
+}
+
+/* Mejora la legibilidad en dispositivos móviles ajustando el tamaño del texto */
+@media (max-width: 400px) {
+  body {
+    font-size: 14px;
+  }
+}
+
+/* Añade efectos visuales al pasar el mouse sobre las filas */
+tr.mat-row:hover {
+  background-color: #e3f2fd; /* Un azul claro para resaltar la fila */
+  cursor: pointer; /* Indica que la fila es interactiva */
+}
+
+/* Estilos para el toolbar */
+mat-toolbar {
+  background-color: #1976d2; /* Color azul primario para el toolbar */
+  color: white;
+  font-size: 20px;
+}
+
+/* Añade un margen superior e inferior al contenedor principal para darle más espacio */
+div.mat-elevation-z8 {
+  margin: 20px 0;
+}

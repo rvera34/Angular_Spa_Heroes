@@ -1,1 +1,12 @@
-<p>confirm-dialog works!</p>
+<h1 mat-dialog-title>Confirmar eliminación</h1>
+<div mat-dialog-content class="confirm-dialog-content">
+  ¿Estás seguro de que quieres borrar? Esta acción no se puede deshacer.
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="onNoClick()" class="cancel-button">
+    <mat-icon>cancel</mat-icon> Cancelar
+  </button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial color="warn" class="delete-button">
+    <mat-icon>delete</mat-icon> Eliminar
+  </button>
+</div>
