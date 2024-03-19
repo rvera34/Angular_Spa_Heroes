@@ -20,10 +20,7 @@
       <input matInput type="number" formControlName="edad">
     </mat-form-field>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Descripción</mat-label>
-      <textarea matInput formControlName="descripcion"></textarea>
-    </mat-form-field>
+
 
     <mat-form-field appearance="fill">
       <mat-label>Fecha de Nacimiento</mat-label>
@@ -33,9 +30,19 @@
     </mat-form-field>
 
     <mat-form-field appearance="fill">
-      <mat-label>URL de la Imagen</mat-label>
-      <input matInput formControlName="imagenUrl">
+      <mat-label>Subir Imagen</mat-label>
+      <input matInput [value]="fileName" placeholder="Selecciona una imagen..." readonly>
+      <button mat-icon-button matSuffix (click)="fileInput.click()" aria-label="Seleccionar archivo" type="button">
+        <mat-icon>attach_file</mat-icon>
+      </button>
     </mat-form-field>
+    <input type="file" #fileInput style="display: none" (change)="onFileSelected($event)" accept="image/png, image/jpeg">
+
+    <mat-form-field appearance="fill">
+      <mat-label>Descripción</mat-label>
+      <textarea matInput formControlName="descripcion"></textarea>
+    </mat-form-field>
+
 
     <button mat-raised-button
             color="primary"

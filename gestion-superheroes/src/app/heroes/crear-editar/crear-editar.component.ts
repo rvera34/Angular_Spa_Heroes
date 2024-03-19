@@ -13,7 +13,8 @@ export class CrearEditarComponent {
 
   heroeForm: FormGroup;
   id: number | null = null;
-  fileName = '';
+  fileName: string | undefined = 'Selecciona una imagen...';
+
 
   constructor(
     private heroesService: HeroesService,
@@ -25,10 +26,11 @@ export class CrearEditarComponent {
       nombre: new FormControl('', Validators.required),
       apellido: new FormControl(''),
       telefono: new FormControl(''),
-      edad: new FormControl(0, [Validators.required, Validators.min(1)]),
+      edad: new FormControl(18, [Validators.required, Validators.min(1)]),
       descripcion: new FormControl('', Validators.required),
       fechaDeNacimiento: new FormControl('', Validators.required),
-      imagenUrl: new FormControl('')
+      imagenUrl: new FormControl('', Validators.required),
+      imageFileName: new FormControl('', Validators.required),
     });
   }
 
@@ -44,8 +46,10 @@ export class CrearEditarComponent {
             edad: heroe.edad,
             descripcion: heroe.descripcion,
             fechaDeNacimiento: heroe.fechaDeNacimiento,
-            imagenUrl: heroe.imagenUrl
+            imagenUrl: heroe.imagenUrl,
+            imageFileName: heroe.imageFileName
           });
+          this.fileName = heroe.imageFileName;
         });
       }
     });
@@ -53,7 +57,6 @@ export class CrearEditarComponent {
 
   onSubmit(): void {
     if (this.id != null) {
-      // Editar héroe existente
       this.heroesService.updateHero(this.id, this.heroeForm.value).subscribe({
         next: () => {
           this.router.navigate(['/listado']).then(() => {
@@ -65,7 +68,6 @@ export class CrearEditarComponent {
         }
       });
     } else {
-      // Crear nuevo héroe
       this.heroesService.addHero(this.heroeForm.value).subscribe({
         next: () => {
           this.router.navigate(['/listado']).then(() => {
@@ -80,19 +82,29 @@ export class CrearEditarComponent {
   }
 
 
+  onFileSelected(event: any): void {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.fileName = file.name;
+      // También actualiza el valor de imageFileName en el formulario
+      this.heroeForm.get('imageFileName')!.setValue(this.fileName);
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.heroeForm.get('imagenUrl')!.setValue(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+
+
   onClose(): void {
     this.router.navigate(['/listado'], { relativeTo: this.route });
   }
 
 
-  onFileSelected(event: any): void {
-    const file: File = event.target.files[0];
-    if (file) {
-      // Aquí puedes manejar la carga del archivo, por ejemplo, leyéndolo como una URL local
-      // Para propósitos de demostración, usaré una ruta estática de la carpeta assets
-      // Suponiendo que tienes una imagen llamada 'example.jpg' en la carpeta 'assets/images'
-      this.heroeForm.get('imagenUrl')!.setValue('assets/images/example.jpg');
-    }
-  }
+
+
 
 }

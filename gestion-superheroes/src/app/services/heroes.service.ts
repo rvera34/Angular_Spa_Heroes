@@ -67,8 +67,7 @@ export class HeroesService {
 }
 
 
-
-// mokeado de los datos
+// Mock de los datos
 
 const HEROES_MOCK: Heroe[] = [
   {
@@ -79,37 +78,41 @@ const HEROES_MOCK: Heroe[] = [
     edad: 30,
     descripcion: 'Empresario de día, protector de Gotham de noche.',
     fechaDeNacimiento: new Date(1990, 5, 15),
-    imagenUrl: 'assets/heroes/batman.png'
+    imagenUrl: 'assets/heroes/batman.png',
+    imageFileName: 'batman.png'
   },
   {
     id: 2,
-    nombre: 'clark',
+    nombre: 'Clark',
     apellido: 'Kent',
-    telefono: ' 955708090',
+    telefono: '955708090',
     edad: 35,
     descripcion: 'Periodista de día, protector de Metrópolis de noche.',
     fechaDeNacimiento: new Date(1985, 6, 18),
-    imagenUrl: 'assets/heroes/superman.png'
+    imagenUrl: 'assets/heroes/superman.png',
+    imageFileName: 'superman.png'
   },
   {
     id: 3,
-    nombre: 'tony',
+    nombre: 'Tony',
     apellido: 'Stark',
     telefono: '633880022',
     edad: 40,
     descripcion: 'Genio, multimillonario, playboy, filántropo.',
     fechaDeNacimiento: new Date(1980, 4, 29),
-    imagenUrl: 'assets/heroes/iron-man.png'
+    imagenUrl: 'assets/heroes/iron-man.png',
+    imageFileName: 'iron-man.png'
   },
   {
     id: 4,
     nombre: 'Logan',
     apellido: '',
-    telefono: ' 600123456',
+    telefono: '600123456',
     edad: 100,
     descripcion: 'Mutante con poderes de regeneración, esqueleto de adamantium y garras retráctiles.',
     fechaDeNacimiento: new Date(1880, 0, 1),
-    imagenUrl: 'assets/heroes/wolverine.jpg'
+    imagenUrl: 'assets/heroes/wolverine.jpg',
+    imageFileName: 'wolverine.jpg'
   }
-
 ];
+
